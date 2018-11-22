@@ -1,0 +1,40 @@
+#создать словарь
+	#ключь - название блда
+	#значение еще словарь
+#открыть файл
+#пройтись по всем строкам
+	#1-я строка - название блюда
+	#записываем в ключ
+	#2-я строка определяет кол-во ингридиентов
+	#создаем в значении список
+	#3-я строка значение для словоря
+		# 1-ый элимент значение для ингридиенты
+		# 2-ой элемент значение для количество
+		# 3-ий элемент значение для измерения
+
+cook_book = {}
+condition = 0
+curient_ricept = ()
+count_ingridients = ()
+with open ('cook.txt', "utf-8") as f:
+	for line in f.readlines():
+            line = line.strip()
+            if condition == 0:
+                curient_ricept = line
+                condition = 1
+                cook_book[line] = line
+            elif condition == 1:
+                count_ingridients = int(line)
+                condition = 2
+            elif condition == 2:
+                splited = line.split(' | ')
+                cook_book[curient_ricept] = {'ingridient_name': splited[0] ,'quantity': int(splited[1]) ,'measure' : splited[2]}
+                condition = 3
+print(cook_book)
+
+
+
+
+
+
+
